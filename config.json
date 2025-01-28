@@ -1,0 +1,41 @@
+{
+    "listeners": [
+        {
+            "address": "0.0.0.0",
+            "port": 5555,
+            "https": false
+        }
+    ],
+    "app": {
+        "number_of_threads": 1,
+        "enable_session": false,
+        "document_root": "./",
+        "home_page": "index.html",
+        "use_implicit_page": true,
+        "implicit_page": "index.html",
+        "upload_path": "uploads",
+        "file_types": [
+            "gif",
+            "png",
+            "jpg",
+            "js",
+            "css",
+            "html",
+            "ico",
+            "xml",
+            "webp",
+            "svg"
+        ],
+        "log": {
+            "use_spdlog": false,
+            "logfile_base_name": "",
+            "log_size_limit": 100000000,
+            "max_files": 0,
+            "log_level": "DEBUG",
+            "display_local_time": false
+        },
+        "run_as_daemon": false,
+        "enable_server_header": true,
+        "enable_date_header": true
+    }
+}

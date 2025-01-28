@@ -13,19 +13,24 @@ RUN git clone https://github.com/drogonframework/drogon; \
 
 COPY . . 
 
-RUN cd build; \
-    cmake .. -DCMAKE_ENABLE_EXPORTS=on -DCMAKE_C_COMPILER=musl-gcc -DCMAKE_CXX_COMPILER=clang++; \
+# RUN cd build; \
+#     cmake .. -DCMAKE_ENABLE_EXPORTS=on -DCMAKE_C_COMPILER=musl-gcc -DCMAKE_CXX_COMPILER=clang++; \
+#     make;
+
+RUN mkdir -p build && \
+    cd build && \
+    cmake .. -DCMAKE_ENABLE_EXPORTS=on -DCMAKE_C_COMPILER=musl-gcc -DCMAKE_CXX_COMPILER=clang++ && \
     make;
 
 FROM ubuntu
 
 RUN apt update && apt full-upgrade -y; \
-    apt install libjsoncpp-dev libyaml-cpp-dev -y;
+    apt install libjsoncpp-dev -y;
 
-COPY --from=build  /config.yaml /app/config.yaml
+COPY --from=build  /config.json /app/config.json
 COPY --from=build /build/drogon_api /app/drogon_api
 
-EXPOSE 5555
-CMD ["/app/drogon_api"]
+# EXPOSE 5555
+# CMD ["/app/drogon_api"]
 
-# ENTRYPOINT ["tail", "-f", "/dev/null"]
+ENTRYPOINT ["tail", "-f", "/dev/null"]
