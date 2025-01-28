@@ -1,0 +1,34 @@
+services:
+  postgres:
+    container_name: drogon-database
+    image: postgres:13.16-bookworm
+    restart: always
+    shm_size: 128mb
+    ports:
+      - "5432:5432"
+    networks:
+      - drogon
+    volumes:
+      - drogon-data:/var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+        reservations:
+          cpus: "0.5"
+          memory: 512M
+    environment:
+      POSTGRES_DB: drogon-database
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+volumes:
+  drogon-data:
+    name: drogon-data
+
+networks:
+  drogon:
+    name: drogon-network
+    driver: bridge
+    external: false

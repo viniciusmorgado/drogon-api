@@ -1,11 +1,9 @@
 #include <drogon/drogon.h>
-using namespace drogon;
-int main()
-{
-    app().setLogPath("./")
-         .setLogLevel(trantor::Logger::kWarn)
-         .addListener("0.0.0.0", 80)
-         .setThreadNum(16)
-         .enableRunAsDaemon()
-         .run();
+
+int main() {
+    drogon::app().loadConfigFile("/app/config.yaml");
+    LOG_INFO << "Running....";
+    drogon::app().run();
+    
+    return 0;
 }
