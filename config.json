@@ -10,21 +10,10 @@
         "number_of_threads": 1,
         "enable_session": false,
         "document_root": "./",
-        "home_page": "index.html",
-        "use_implicit_page": true,
-        "implicit_page": "index.html",
-        "upload_path": "uploads",
-        "file_types": [
-            "gif",
-            "png",
-            "jpg",
-            "js",
-            "css",
-            "html",
-            "ico",
-            "xml",
-            "webp",
-            "svg"
+        "controllers": [
+            {
+                "path": "api/controllers"
+            }
         ],
         "log": {
             "use_spdlog": false,
