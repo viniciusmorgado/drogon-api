@@ -1,0 +1,6 @@
+[requires]
+jsoncpp/1.9.4
+zlib/1.2.11
+openssl/1.1.1t
+hiredis/1.0.0
+libpq/13.4

@@ -1,7 +1,7 @@
 FROM ubuntu AS build
 
 RUN apt update && apt full-upgrade -y; \
-    apt install git clang clang-format musl-tools gcc g++ cmake libjsoncpp-dev uuid-dev zlib1g-dev openssl libssl-dev -y;
+    apt install git clang clang-format postgresql-all libhiredis-dev musl-tools gcc g++ cmake libjsoncpp-dev uuid-dev zlib1g-dev openssl libssl-dev -y;
 
 RUN git clone https://github.com/drogonframework/drogon; \
     cd drogon; \
@@ -28,6 +28,6 @@ COPY --from=build  /config.json /app/config.json
 COPY --from=build /build/drogon_api /app/drogon_api
 
 EXPOSE 5555
-# CMD ["./app/drogon_api"]
+CMD ["./app/drogon_api"]
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+# ENTRYPOINT ["tail", "-f", "/dev/null"]
